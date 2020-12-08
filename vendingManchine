@@ -1,0 +1,45 @@
+package com.koreait.first.vending;
+
+import java.util.Scanner;
+
+public class VendingTest2 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String[] canArr = { "콜라", "사이다", "환타", "마운틴듀","밀키스" }; //메뉴와 가격을 배열을 이용해 넣는다.
+		int[] priceArr = { 700, 900, 1500, 800, 1300 };
+
+		showMenus(canArr, priceArr);
+
+		//int  = sc.nextInt();
+		int sum = pureches(priceArr,sc);
+		System.out.printf("총 합계 : %,d원\n" ,sum);
+	}
+
+	public static int pureches(int[] priceArr, Scanner in) {
+		Scanner sc = new Scanner(System.in);
+		int result = 0;
+
+		while (true) {
+			System.out.print("메뉴선택 (종료:0) : ");
+			int insert = sc.nextInt();
+			if (insert == 0) {
+				break;
+			} else if (insert < 0 || insert > priceArr.length ) {
+				System.out.println("잘 못 입력하셨습니다.");
+				continue;
+			}
+			result += priceArr[insert - 1];
+		}
+
+		return result;
+		
+	}
+
+	public static void showMenus(String[] canArr, int[] priceArr) {
+		System.out.println("-- 메뉴 --");
+		for (int i = 0; i < canArr.length; i++) {
+			System.out.printf("%d. %s - (%,d원)\n", i + 1, canArr[i], priceArr[i]);
+		}
+	}
+
+}
